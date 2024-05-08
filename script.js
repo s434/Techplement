@@ -58,11 +58,11 @@ const getWeatherDetails= (cityName, lat, lon) =>{
                 }
             });
 
-            // Extract sunrise and sunset times
+            
             const sunriseTimestamp = data.city.sunrise;
             const sunsetTimestamp = data.city.sunset;
 
-            // Set background video based on weather description
+            
             setWeatherBackground(data.list[0].weather[0].description.toLowerCase(), sunriseTimestamp, sunsetTimestamp);
         })
         .catch(()=>{
@@ -96,16 +96,16 @@ const setWeatherBackground = (weatherDescription, sunriseTimestamp, sunsetTimest
 
     let videoURL;
 
-    // Set different background videos for clear skies during the day and night
+   
     if (weatherDescription.toLowerCase() === 'clear sky' || weatherDescription.toLowerCase() === 'scattered clouds' || weatherDescription.toLowerCase() === 'broken clouds' || weatherDescription.toLowerCase() === 'overcast clouds' || weatherDescription.toLowerCase() === 'few clouds') {
         if (isDaytime) {
             console.log("here")
-            videoURL = 'videos/sunrise.mp4'; // Video for clear sky during the day
+            videoURL = 'videos/sunrise.mp4'; 
         } else {
-            videoURL = 'videos/night.mp4'; // Video for clear sky at night
+            videoURL = 'videos/night.mp4';
         }
     } else {
-        // Default background video for other weather conditions
+        
         const backgroundVideos = {
         
             'shower rain': 'videos/rain.mp4',
@@ -118,7 +118,6 @@ const setWeatherBackground = (weatherDescription, sunriseTimestamp, sunsetTimest
             'light snow': 'videos/snow.mp4',
             'heavy snow': 'videos/snow.mp4',
             'mist': 'videos/mist.mp4'
-            // Add more mappings as needed for other weather conditions
         };
 
         videoURL = backgroundVideos[weatherDescription.toLowerCase()] || 'sunrise.mp4';
@@ -134,7 +133,6 @@ const isDaytimeNow = (sunriseTimestamp, sunsetTimestamp) => {
     return currentTime >= sunriseTimestamp && currentTime < sunsetTimestamp;
 };
 
-// Event listener for search button click
 cityInput.addEventListener("keyup", e=>e.key === "Enter" && getCityCoordinates());
 searchButton.addEventListener("click",getCityCoordinates);
 
