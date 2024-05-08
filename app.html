@@ -23,12 +23,9 @@
     
             };
     
-            // Set the value of the city input field with the received city name
             const cityName = decodeURIComponent(getCityNameFromURL());
             console.log(cityName)
             document.querySelector(".city-input").value = cityName;
-    
-            // Trigger the click event of the search button to generate the weather details
             document.querySelector(".search-btn").click();
         });
     </script>
